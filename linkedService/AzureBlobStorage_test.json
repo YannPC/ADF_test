@@ -1,0 +1,11 @@
+{
+	"name": "AzureBlobStorage_test",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"containerUri": "https://adfresourcegrouptraa761.blob.core.windows.net/azure-webjobs-hosts",
+			"authenticationType": "Anonymous"
+		}
+	}
+}
