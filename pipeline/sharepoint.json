@@ -1,0 +1,120 @@
+{
+	"name": "sharepoint",
+	"properties": {
+		"activities": [
+			{
+				"name": "GetToken",
+				"description": "Tokens ",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/x-www-form-urlencoded",
+						"Connection": "Keep-alive"
+					},
+					"url": "https://accounts.accesscontrol.windows.net/dee77101-5dbf-42f9-87f3-9307cfa772db/tokens/OAuth/2",
+					"body": "grant_type=client_credentials&client_id=cc56606e-2d1a-4eae-bcba-d1dbd2524e4a@dee77101-5dbf-42f9-87f3-9307cfa772db&client_secret=v4g8Q~ELAGuqzmGK-GI.mrjNamvhli~ZAPgmwaIY&resource=00000003-0000-0ff1-ce00-000000000000/m365x73851155.sharepoint.com@dee77101-5dbf-42f9-87f3-9307cfa772db"
+				}
+			},
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "GetToken",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"additionalHeaders": {
+							"Authorization": {
+								"value": "@{concat('Bearer ',activity('GetToken').output.access_token)}",
+								"type": "Expression"
+							}
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['value'][0]['Name']"
+								},
+								"sink": {
+									"name": "Name"
+								}
+							},
+							{
+								"source": {
+									"path": "$['value'][0]['ServerRelativeUrl']"
+								},
+								"sink": {
+									"name": "ServerRelativeUrl"
+								}
+							},
+							{
+								"source": {
+									"path": "$['value'][0]['TimeLastModified']"
+								},
+								"sink": {
+									"name": "TimeLastModified"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "RestResource1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DelimitedText22",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2024-01-10T12:30:58Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

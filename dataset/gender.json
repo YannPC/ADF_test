@@ -1,0 +1,25 @@
+{
+	"name": "gender",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Destination Storage store",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Gender",
+				"folderPath": "Raw data ",
+				"container": "project01"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

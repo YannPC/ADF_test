@@ -1,0 +1,23 @@
+{
+	"name": "DelimitedText18",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HttpServer_sharepoint",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": "/sites/Test/_api/web/GetFileByServerRelativeUrl('/sites/Test/Shared%20Documents/Lab/Book.xlsx')/$value"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

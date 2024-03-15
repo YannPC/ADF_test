@@ -1,0 +1,10 @@
+{
+	"name": "AzureBlobStorage761",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/490f884c-8564-4a53-bcb9-bee386795964/resourceGroups/ADF_ResourceGroup_Training/providers/Microsoft.Storage/storageAccounts/storageaccountsete01",
+		"groupId": "blob",
+		"fqdns": [
+			"storageaccountsete01.blob.core.windows.net"
+		]
+	}
+}

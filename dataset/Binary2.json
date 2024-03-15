@@ -1,0 +1,18 @@
+{
+	"name": "Binary2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HttpServer_sharepoint",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": "/sites/Test/_api/web/GetFileByServerRelativeUrl('/sites/Test/Shared Documents/Book.xlsx')/$value"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,15 @@
+{
+	"name": "AdfDataFactoryTraining01",
+	"location": "northeurope",
+	"identity": {
+		"type": "SystemAssigned,UserAssigned",
+		"principalId": "e7a6d7f2-1c7e-4aee-9de5-d558fc276090",
+		"tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47",
+		"userAssignedIdentities": {
+			"/subscriptions/490f884c-8564-4a53-bcb9-bee386795964/resourcegroups/ADF_ResourceGroup_Training/providers/Microsoft.ManagedIdentity/userAssignedIdentities/ADFManagedIdentity": {
+				"clientId": "dc9d0360-a533-4c43-b6e7-cd69d9a2b735",
+				"principalId": "41492f45-4d46-43cd-873b-732d58517553"
+			}
+		}
+	}
+}

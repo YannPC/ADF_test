@@ -1,0 +1,10 @@
+{
+	"name": "Az_SQL_ManagedPrivateEndpoint",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/490f884c-8564-4a53-bcb9-bee386795964/resourceGroups/ADF_ResourceGroup_Training/providers/Microsoft.Sql/servers/mysqlserveradf01",
+		"groupId": "sqlServer",
+		"fqdns": [
+			"mysqlserveradf01.database.windows.net"
+		]
+	}
+}

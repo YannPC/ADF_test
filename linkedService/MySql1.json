@@ -1,0 +1,24 @@
+{
+	"name": "MySql1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [
+			"[ ]"
+		],
+		"type": "MySql",
+		"typeProperties": {
+			"connectionString": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault01",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "Test"
+			}
+		},
+		"connectVia": {
+			"referenceName": "SHIR01",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

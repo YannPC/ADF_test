@@ -1,0 +1,12 @@
+{
+	"name": "PostgreSql_legacy",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "PostgreSql",
+		"typeProperties": {
+			"connectionString": "host=dbinstance01.cno80mewqmbc.eu-north-1.rds.amazonaws.com;port=5432;database=Postrgess_Db;uid=postgres;encryptionmethod=1;validateservercertificate=1",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQEU5RDEyRDE1LTNCMEItNERBQi1BNDFBLTRDRTFEN0M3NDEwMF9iYzU3N2VlZS02MWY5LTQ1N2YtODBjNy05ZTFlMTJlZGY2MzMiDQp9"
+		}
+	}
+}

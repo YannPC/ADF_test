@@ -1,0 +1,18 @@
+{
+	"name": "FileServer_Test",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "Created a new user on my VM as Test and created a folder as read ",
+		"annotations": [],
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "\\\\VM01\\Users\\kMassoumou\\Desktop\\Test_readaccess",
+			"userId": "Test",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI4ODYxYjdiYi03NWIzLTRiMjMtODYxNi1mMmNhNmI3M2ZhYjkiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "SHIR01",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

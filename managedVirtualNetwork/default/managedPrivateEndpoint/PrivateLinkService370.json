@@ -1,0 +1,10 @@
+{
+	"name": "PrivateLinkService370",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/490f884c-8564-4a53-bcb9-bee386795964/resourceGroups/labresource/providers/Microsoft.Network/privateLinkServices/myPrivateLinkService",
+		"groupId": "",
+		"fqdns": [
+			"dataslice10.eastus.database.windows.net"
+		]
+	}
+}

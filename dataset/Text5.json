@@ -1,0 +1,26 @@
+{
+	"name": "Text5",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "New_csv_sample.csv",
+				"container": "csv-file"
+			},
+			"columnDelimiter": ",",
+			"rowDelimiter": "\n",
+			"encodingName": "UTF-8",
+			"escapeChar": "\"",
+			"firstRowAsHeader": true,
+			"quoteChar": "'"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

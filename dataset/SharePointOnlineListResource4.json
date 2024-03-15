@@ -1,0 +1,16 @@
+{
+	"name": "SharePointOnlineListResource4",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SharePointOnlineList2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SharePointOnlineListResource",
+		"schema": [],
+		"typeProperties": {
+			"listName": "List_Test"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

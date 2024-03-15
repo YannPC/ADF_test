@@ -1,0 +1,24 @@
+{
+	"name": "SFTP_File",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SFTP_LinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "SftpLocation",
+				"fileName": "Excel01.xlsx",
+				"folderPath": "/SFTP_ADF"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,19 @@
+{
+	"name": "Binary4",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Destination Storage store",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "sharepoint",
+				"container": "containerouput"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

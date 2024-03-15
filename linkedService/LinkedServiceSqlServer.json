@@ -1,0 +1,17 @@
+{
+	"name": "LinkedServiceSqlServer",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "LinkedService ",
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=mysqlserveradf01.database.windows.net;initial catalog=SQLdatabase01;user id=azureuser",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI5NTYwYjAyOC1iNjI5LTQyNTEtYjFjOC04NjgxMjFmZjQ4ZTEiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "SHIR01",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

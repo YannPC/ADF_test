@@ -1,0 +1,13 @@
+{
+	"name": "DumyRestAPI_file",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RESTAPI",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

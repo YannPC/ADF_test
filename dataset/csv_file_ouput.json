@@ -1,0 +1,24 @@
+{
+	"name": "csv_file_ouput",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Destination Storage store",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "csv_ouput",
+				"container": "containerouput"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": ""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

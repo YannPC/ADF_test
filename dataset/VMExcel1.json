@@ -1,0 +1,30 @@
+{
+	"name": "VMExcel1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LocalFileServer1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Sheet1",
+			"location": {
+				"type": "FileServerLocation",
+				"fileName": "Excel01.xlsx"
+			}
+		},
+		"schema": [
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

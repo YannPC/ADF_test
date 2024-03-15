@@ -1,0 +1,14 @@
+{
+	"name": "Stringling",
+	"properties": {
+		"type": "UDFLibrary",
+		"typeProperties": {
+			"sources": [],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"DefualtUpper(string) as string = coalesce(upper(trim(i1)),'DEFAULT')"
+			]
+		}
+	}
+}
