@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Test",
+				"name": "Test_adf",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -61,7 +61,7 @@
 				"type": "Delete",
 				"dependsOn": [
 					{
-						"activity": "Test",
+						"activity": "Test_adf",
 						"dependencyConditions": [
 							"Succeeded"
 						]
