@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "newcsv_1",
+				"name": "newcsv",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
