@@ -1,8 +1,8 @@
 {
-	"name": "RestResource1",
+	"name": "RestService_sharepointM365x8477032",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "RestService1",
+			"referenceName": "RestService_sharepointM65x8477032",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],

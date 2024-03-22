@@ -21,8 +21,8 @@
 						"Content-Type": "application/x-www-form-urlencoded",
 						"Connection": "Keep-alive"
 					},
-					"url": "https://accounts.accesscontrol.windows.net/dee77101-5dbf-42f9-87f3-9307cfa772db/tokens/OAuth/2",
-					"body": "grant_type=client_credentials&client_id=cc56606e-2d1a-4eae-bcba-d1dbd2524e4a@dee77101-5dbf-42f9-87f3-9307cfa772db&client_secret=v4g8Q~ELAGuqzmGK-GI.mrjNamvhli~ZAPgmwaIY&resource=00000003-0000-0ff1-ce00-000000000000/m365x73851155.sharepoint.com@dee77101-5dbf-42f9-87f3-9307cfa772db"
+					"url": "https://accounts.accesscontrol.windows.net/7ce4263d-9934-4f92-8439-8b1896223c63/tokens/OAuth/2",
+					"body": "grant_type=client_credentials&client_id=b3d46c8b-bc11-480e-9f11-9d757c1ce813@7ce4263d-9934-4f92-8439-8b1896223c63&client_secret=2Sg8Q~Hj0RZZyaPwbU4-aCYcpB-n8krYWZaT4aFU&resource=00000003-0000-0ff1-ce00-000000000000/m365x84770032.sharepoint.com@7ce4263d-9934-4f92-8439-8b1896223c63"
 				}
 			},
 			{
@@ -101,7 +101,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "RestResource1",
+						"referenceName": "RestService_sharepointM365x8477032",
 						"type": "DatasetReference"
 					}
 				],
@@ -114,7 +114,7 @@
 			}
 		],
 		"annotations": [],
-		"lastPublishTime": "2024-01-10T12:30:58Z"
+		"lastPublishTime": "2024-03-21T15:08:38Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

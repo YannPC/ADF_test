@@ -1,11 +1,11 @@
 {
-	"name": "RestService1",
+	"name": "RestService_sharepointM65x8477032",
 	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://m365x84770032.sharepoint.com",
+			"url": " https://m365x84770032.sharepoint.com",
 			"enableServerCertificateValidation": false,
 			"authenticationType": "Anonymous"
 		}
