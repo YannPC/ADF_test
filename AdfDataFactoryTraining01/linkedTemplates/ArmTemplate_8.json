@@ -1,0 +1,93 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "AdfDataFactoryTraining01"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/Dataflow_contact_issue')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "AzureSqlTable5",
+								"type": "DatasetReference"
+							},
+							"name": "CalDayBookBalStagingTable"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "AzureSqlTable5",
+								"type": "DatasetReference"
+							},
+							"name": "dataflow"
+						}
+					],
+					"transformations": [
+						{
+							"name": "DerivedColumns",
+							"description": "Creating/updating the columns 'record_type, bank_rkg_nr, account_identification_iban, admin_code, currency_code, book_balance, decimal_code, credit_debit_indicator, last_mutation_date, last_mutation_time, last_non_fin_mutation_date, last_non_fin_mutation_time, calendardate_derived, value_balance_derived, value_bal_in_iso_derived, last_mutation_timestamp_derived, recon_done_derived, credit_debit_indicator_formatted, account_identification_iban_trim'"
+						},
+						{
+							"name": "filterDataForCurrentCalDate",
+							"description": "Filtering rows using expressions on columns 'last_non_fin_mutation_date'"
+						}
+					],
+					"scriptLines": [
+						"parameters{",
+						"     calendardatevalue as string (\"08062022\"),",
+						"     parameter1 as string (\"testfile\")",
+						"}",
+						"source(output(",
+						"          account_identification_iban as string,",
+						"          book_balance as string,",
+						"          currency_code as string,",
+						"          decimal_code as string,",
+						"          credit_debit_indicator as string,",
+						"          last_non_fin_mutation_date as string,",
+						"          last_non_fin_mutation_time as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     isolationLevel: 'READ_UNCOMMITTED',",
+						"     query: 'select account_identification_iban, book_balance, currency_code, decimal_code, credit_debit_indicator, last_non_fin_mutation_date, last_non_fin_mutation_time from tfr_staging_calday_book_balance where book_balance = 0 and last_mutation_date = \\'00000000\\'\\n and admin_code<>\\'H\\'',",
+						"     format: 'query') ~> CalDayBookBalStagingTable",
+						"filterDataForCurrentCalDate derive(calendardate_derived = toDate($calendardatevalue, 'ddMMyyyy'),",
+						"          value_balance_derived = toDecimal(book_balance,17,0),",
+						"          last_mutation_timestamp_derived = toTimestamp(concat(last_non_fin_mutation_date+' '+last_non_fin_mutation_time),'yyyyMMdd HHmmssSSS'),",
+						"          recon_done_derived = 'N',",
+						"          credit_debit_indicator_formatted = case(equalsIgnoreCase(credit_debit_indicator,'C'), 'CRDT',case(equalsIgnoreCase(credit_debit_indicator,'D'),'DBIT','')),",
+						"          account_identification_iban_trim = trim(account_identification_iban),",
+						"          value_bal_in_iso_derived = toDecimal(concat(substring(book_balance,0,(17-toInteger(decimal_code)))+'.'+substring(book_balance,(17-toInteger(decimal_code)+1),toInteger(decimal_code))))) ~> DerivedColumns",
+						"CalDayBookBalStagingTable filter(toDate(concat(last_non_fin_mutation_date), 'yyyyMMdd', 'CET') == toDate($calendardatevalue,'ddMMyyyy')) ~> filterDataForCurrentCalDate",
+						"DerivedColumns sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> dataflow"
+					]
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
