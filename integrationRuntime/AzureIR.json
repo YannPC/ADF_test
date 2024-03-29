@@ -4,7 +4,7 @@
 		"type": "Managed",
 		"typeProperties": {
 			"computeProperties": {
-				"location": "Australia East",
+				"location": "South Africa North",
 				"dataFlowProperties": {
 					"computeType": "General",
 					"coreCount": 8,
