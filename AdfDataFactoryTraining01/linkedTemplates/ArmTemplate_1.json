@@ -36,6 +36,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SqlServer2'"
 		},
+		"RestService_sharepointM65x8477032_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": " https://m365x84770032.sharepoint.com"
+		},
 		"Sftp_MsAzure_properties_typeProperties_host": {
 			"type": "string",
 			"defaultValue": "wrfwe.blob.core.windows.net"
@@ -77,6 +81,21 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/RestService_sharepointM65x8477032')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('RestService_sharepointM65x8477032_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": false,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Sftp_MsAzure')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -228,7 +247,7 @@
 				"type": "Managed",
 				"typeProperties": {
 					"computeProperties": {
-						"location": "North Europe",
+						"location": "South Africa North",
 						"dataFlowProperties": {
 							"computeType": "General",
 							"coreCount": 8,
@@ -265,6 +284,18 @@
 					"scriptLines": [
 						"DefualtUpper(string) as string = coalesce(upper(trim(i1)),'DEFAULT')"
 					]
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/credential1')]",
+			"type": "Microsoft.DataFactory/factories/credentials",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "ManagedIdentity",
+				"typeProperties": {
+					"resourceId": "/subscriptions/490f884c-8564-4a53-bcb9-bee386795964/resourcegroups/ADF_ResourceGroup_Training/providers/Microsoft.ManagedIdentity/userAssignedIdentities/ADFManagedIdentity"
 				}
 			},
 			"dependsOn": []
@@ -336,7 +367,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
+			"name": "[concat(parameters('factoryName'), '/umaSP_file')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -525,48 +556,6 @@
 					"location": {
 						"type": "HttpServerLocation",
 						"relativeUrl": "/sites/Test/_api/web/GetFileByServerRelativeUrl('/sites/Test/Shared Documents/Book.xlsx')/$value"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Binary3')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "sample",
-						"container": "containerouput"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Binary4')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Destination Storage store",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "sharepoint",
-						"container": "containerouput"
 					}
 				}
 			},

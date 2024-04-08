@@ -140,6 +140,10 @@
 			"type": "string",
 			"defaultValue": "https://dlsg01.dfs.core.windows.net/"
 		},
+		"AzureDataLakeStorage2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakestorageadf2.dfs.core.windows.net/"
+		},
 		"AzureHDInsightLinkedService_properties_typeProperties_hostSubscriptionId": {
 			"type": "string",
 			"defaultValue": "490f884c-8564-4a53-bcb9-bee386795964"
@@ -398,6 +402,9 @@
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
 					},
+					"AzureDataLakeStorage2_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage2_properties_typeProperties_url')]"
+					},
 					"AzureKeyVault01_properties_typeProperties_baseUrl": {
 						"value": "[parameters('AzureKeyVault01_properties_typeProperties_baseUrl')]"
 					},
@@ -430,9 +437,6 @@
 					},
 					"RestService1_properties_typeProperties_url": {
 						"value": "[parameters('RestService1_properties_typeProperties_url')]"
-					},
-					"RestService_sharepointM65x8477032_properties_typeProperties_url": {
-						"value": "[parameters('RestService_sharepointM65x8477032_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -472,6 +476,9 @@
 					},
 					"SqlServer2_password": {
 						"value": "[parameters('SqlServer2_password')]"
+					},
+					"RestService_sharepointM65x8477032_properties_typeProperties_url": {
+						"value": "[parameters('RestService_sharepointM65x8477032_properties_typeProperties_url')]"
 					},
 					"Sftp_MsAzure_properties_typeProperties_host": {
 						"value": "[parameters('Sftp_MsAzure_properties_typeProperties_host')]"
@@ -590,9 +597,6 @@
 					"LocalFileServer1_password": {
 						"value": "[parameters('LocalFileServer1_password')]"
 					},
-					"SFTP_LinkedService_password": {
-						"value": "[parameters('SFTP_LinkedService_password')]"
-					},
 					"Athlete HttpServer1_properties_typeProperties_url": {
 						"value": "[parameters('Athlete HttpServer1_properties_typeProperties_url')]"
 					},
@@ -637,15 +641,6 @@
 					},
 					"LocalFileServer1_properties_typeProperties_userId": {
 						"value": "[parameters('LocalFileServer1_properties_typeProperties_userId')]"
-					},
-					"MySql1_properties_typeProperties_connectionString_secretName": {
-						"value": "[parameters('MySql1_properties_typeProperties_connectionString_secretName')]"
-					},
-					"SFTP_LinkedService_properties_typeProperties_host": {
-						"value": "[parameters('SFTP_LinkedService_properties_typeProperties_host')]"
-					},
-					"SFTP_LinkedService_properties_typeProperties_userName": {
-						"value": "[parameters('SFTP_LinkedService_properties_typeProperties_userName')]"
 					}
 				}
 			},
@@ -667,8 +662,20 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"SFTP_LinkedService_password": {
+						"value": "[parameters('SFTP_LinkedService_password')]"
+					},
 					"SqlServer1_connectionString": {
 						"value": "[parameters('SqlServer1_connectionString')]"
+					},
+					"MySql1_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('MySql1_properties_typeProperties_connectionString_secretName')]"
+					},
+					"SFTP_LinkedService_properties_typeProperties_host": {
+						"value": "[parameters('SFTP_LinkedService_properties_typeProperties_host')]"
+					},
+					"SFTP_LinkedService_properties_typeProperties_userName": {
+						"value": "[parameters('SFTP_LinkedService_properties_typeProperties_userName')]"
 					},
 					"SQLDataBase_keyVault_properties_typeProperties_connectionString_secretName": {
 						"value": "[parameters('SQLDataBase_keyVault_properties_typeProperties_connectionString_secretName')]"

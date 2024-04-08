@@ -47,10 +47,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LocalFileServer1'"
 		},
-		"SFTP_LinkedService_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'SFTP_LinkedService'"
-		},
 		"Athlete HttpServer1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com/darshilparmar/tokyo-olympic-azure-data-engineering-project/main/data/Athletes.csv"
@@ -110,24 +106,65 @@
 		"LocalFileServer1_properties_typeProperties_userId": {
 			"type": "string",
 			"defaultValue": "kMassoumou"
-		},
-		"MySql1_properties_typeProperties_connectionString_secretName": {
-			"type": "string",
-			"defaultValue": "Test"
-		},
-		"SFTP_LinkedService_properties_typeProperties_host": {
-			"type": "string",
-			"defaultValue": "10.160.28.4"
-		},
-		"SFTP_LinkedService_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "kMassoumou"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/Text1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Destination Storage store",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "adftutorial"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Text3')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Test_csv.csv",
+						"container": "csv-file"
+					},
+					"columnDelimiter": ",",
+					"rowDelimiter": "\n",
+					"encodingName": "UTF-8",
+					"escapeChar": "\"",
+					"firstRowAsHeader": true,
+					"quoteChar": "'"
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Text5')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
@@ -585,57 +622,6 @@
 					"password": {
 						"type": "SecureString",
 						"value": "[parameters('LocalFileServer1_password')]"
-					}
-				},
-				"connectVia": {
-					"referenceName": "SHIR01",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/MySql1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [
-					"[[ ]"
-				],
-				"type": "MySql",
-				"typeProperties": {
-					"connectionString": {
-						"type": "AzureKeyVaultSecret",
-						"store": {
-							"referenceName": "AzureKeyVault01",
-							"type": "LinkedServiceReference"
-						},
-						"secretName": "[parameters('MySql1_properties_typeProperties_connectionString_secretName')]"
-					}
-				},
-				"connectVia": {
-					"referenceName": "SHIR01",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SFTP_LinkedService')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "Sftp",
-				"typeProperties": {
-					"host": "[parameters('SFTP_LinkedService_properties_typeProperties_host')]",
-					"port": 22,
-					"skipHostKeyValidation": true,
-					"authenticationType": "Basic",
-					"userName": "[parameters('SFTP_LinkedService_properties_typeProperties_userName')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('SFTP_LinkedService_password')]"
 					}
 				},
 				"connectVia": {
