@@ -9,6 +9,12 @@
 					"referenceName": "Blob_VM_tesaccess_read",
 					"type": "PipelineReference"
 				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "pipeline1",
+					"type": "PipelineReference"
+				}
 			}
 		],
 		"type": "ScheduleTrigger",
@@ -16,7 +22,7 @@
 			"recurrence": {
 				"frequency": "Minute",
 				"interval": 15,
-				"startTime": "2024-04-08T07:44:00",
+				"startTime": "2024-04-08T09:49:00",
 				"timeZone": "Central European Standard Time"
 			}
 		}
