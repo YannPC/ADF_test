@@ -12,7 +12,7 @@
 			},
 			{
 				"pipelineReference": {
-					"referenceName": "pipeline1",
+					"referenceName": "Trigger_pipeline",
 					"type": "PipelineReference"
 				}
 			}
