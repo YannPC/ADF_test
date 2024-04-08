@@ -594,9 +594,6 @@
 					"LinkedServiceSqlServer_connectionString": {
 						"value": "[parameters('LinkedServiceSqlServer_connectionString')]"
 					},
-					"LocalFileServer1_password": {
-						"value": "[parameters('LocalFileServer1_password')]"
-					},
 					"Athlete HttpServer1_properties_typeProperties_url": {
 						"value": "[parameters('Athlete HttpServer1_properties_typeProperties_url')]"
 					},
@@ -635,12 +632,6 @@
 					},
 					"FileServer_newtest_properties_typeProperties_userId": {
 						"value": "[parameters('FileServer_newtest_properties_typeProperties_userId')]"
-					},
-					"LocalFileServer1_properties_typeProperties_host": {
-						"value": "[parameters('LocalFileServer1_properties_typeProperties_host')]"
-					},
-					"LocalFileServer1_properties_typeProperties_userId": {
-						"value": "[parameters('LocalFileServer1_properties_typeProperties_userId')]"
 					}
 				}
 			},
@@ -662,11 +653,20 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"LocalFileServer1_password": {
+						"value": "[parameters('LocalFileServer1_password')]"
+					},
 					"SFTP_LinkedService_password": {
 						"value": "[parameters('SFTP_LinkedService_password')]"
 					},
 					"SqlServer1_connectionString": {
 						"value": "[parameters('SqlServer1_connectionString')]"
+					},
+					"LocalFileServer1_properties_typeProperties_host": {
+						"value": "[parameters('LocalFileServer1_properties_typeProperties_host')]"
+					},
+					"LocalFileServer1_properties_typeProperties_userId": {
+						"value": "[parameters('LocalFileServer1_properties_typeProperties_userId')]"
 					},
 					"MySql1_properties_typeProperties_connectionString_secretName": {
 						"value": "[parameters('MySql1_properties_typeProperties_connectionString_secretName')]"

@@ -43,10 +43,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LinkedServiceSqlServer'"
 		},
-		"LocalFileServer1_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'LocalFileServer1'"
-		},
 		"Athlete HttpServer1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com/darshilparmar/tokyo-olympic-azure-data-engineering-project/main/data/Athletes.csv"
@@ -98,20 +94,36 @@
 		"FileServer_newtest_properties_typeProperties_userId": {
 			"type": "string",
 			"defaultValue": "kMassoumou"
-		},
-		"LocalFileServer1_properties_typeProperties_host": {
-			"type": "string",
-			"defaultValue": "C:\\Users\\kMassoumou\\Desktop\\test"
-		},
-		"LocalFileServer1_properties_typeProperties_userId": {
-			"type": "string",
-			"defaultValue": "kMassoumou"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/Teams')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Teams HttpServer",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "HttpServerLocation"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Text1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
@@ -601,28 +613,6 @@
 				"type": "SqlServer",
 				"typeProperties": {
 					"connectionString": "[parameters('LinkedServiceSqlServer_connectionString')]"
-				},
-				"connectVia": {
-					"referenceName": "SHIR01",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LocalFileServer1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "FileServer",
-				"typeProperties": {
-					"host": "[parameters('LocalFileServer1_properties_typeProperties_host')]",
-					"userId": "[parameters('LocalFileServer1_properties_typeProperties_userId')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('LocalFileServer1_password')]"
-					}
 				},
 				"connectVia": {
 					"referenceName": "SHIR01",

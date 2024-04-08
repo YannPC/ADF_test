@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "AdfDataFactoryTraining01"
 		},
+		"LocalFileServer1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LocalFileServer1'"
+		},
 		"SFTP_LinkedService_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SFTP_LinkedService'"
@@ -14,6 +18,14 @@
 		"SqlServer1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'SqlServer1'"
+		},
+		"LocalFileServer1_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "C:\\Users\\kMassoumou\\Desktop\\test"
+		},
+		"LocalFileServer1_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "kMassoumou"
 		},
 		"MySql1_properties_typeProperties_connectionString_secretName": {
 			"type": "string",
@@ -78,6 +90,28 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/LocalFileServer1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "FileServer",
+				"typeProperties": {
+					"host": "[parameters('LocalFileServer1_properties_typeProperties_host')]",
+					"userId": "[parameters('LocalFileServer1_properties_typeProperties_userId')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('LocalFileServer1_password')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "SHIR01",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/MySql1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -228,31 +262,6 @@
 				"privateLinkResourceId": "[parameters('PrivateLinkService370_properties_privateLinkResourceId')]",
 				"groupId": "[parameters('PrivateLinkService370_properties_groupId')]",
 				"fqdns": "[parameters('PrivateLinkService370_properties_fqdns')]"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DelimitedText26')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage2",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "test"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
 			},
 			"dependsOn": []
 		},
