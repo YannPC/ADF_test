@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'secretAccessKey' of 'AmazonS31'"
 		},
+		"Athlete HttpServer1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Athlete HttpServer1'"
+		},
 		"AzureBlobStorage1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
@@ -67,6 +71,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'FileServer_newtest'"
 		},
+		"Hdfs1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Hdfs1'"
+		},
 		"LinkedServiceSqlServer_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LinkedServiceSqlServer'"
@@ -82,6 +90,10 @@
 		"PostgreSql_legacy_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'PostgreSql_legacy'"
+		},
+		"RestService2_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'RestService2'"
 		},
 		"SFTP_LinkedService_password": {
 			"type": "secureString",
@@ -135,6 +147,10 @@
 		"Athlete HttpServer1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com/darshilparmar/tokyo-olympic-azure-data-engineering-project/main/data/Athletes.csv"
+		},
+		"Athlete HttpServer1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "data"
 		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
@@ -200,6 +216,14 @@
 			"type": "string",
 			"defaultValue": "kMassoumou"
 		},
+		"Hdfs1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "ereghrghe"
+		},
+		"Hdfs1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "dehger"
+		},
 		"HttpServer1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com/darshilparmar/tokyo-olympic-azure-data-engineering-project/main/data/Coaches.csv"
@@ -247,6 +271,14 @@
 		"RestService1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://m365x84770032.sharepoint.com"
+		},
+		"RestService2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://raw.githubusercontent.com/darshilparmar/tokyo-olympic-azure-data-engineering-project/main/data/Coaches.csv"
+		},
+		"RestService2_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "azureuser"
 		},
 		"RestService_sharepointM65x8477032_properties_typeProperties_url": {
 			"type": "string",
@@ -5442,16 +5474,15 @@
 				"typeProperties": {
 					"url": "[parameters('Athlete HttpServer1_properties_typeProperties_url')]",
 					"enableServerCertificateValidation": true,
-					"authenticationType": "Anonymous"
-				},
-				"connectVia": {
-					"referenceName": "AzureIR",
-					"type": "IntegrationRuntimeReference"
+					"authenticationType": "Basic",
+					"userName": "[parameters('Athlete HttpServer1_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('Athlete HttpServer1_password')]"
+					}
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/AzureIR')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
@@ -5770,6 +5801,25 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Hdfs1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "Hdfs",
+				"typeProperties": {
+					"url": "[parameters('Hdfs1_properties_typeProperties_url')]",
+					"authenticationType": "Windows",
+					"userName": "[parameters('Hdfs1_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('Hdfs1_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/HttpServer1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -5778,7 +5828,7 @@
 				"type": "HttpServer",
 				"typeProperties": {
 					"url": "[parameters('HttpServer1_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
+					"enableServerCertificateValidation": false,
 					"authenticationType": "Anonymous"
 				}
 			},
@@ -5964,6 +6014,26 @@
 					"url": "[parameters('RestService1_properties_typeProperties_url')]",
 					"enableServerCertificateValidation": false,
 					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RestService2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('RestService2_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Basic",
+					"userName": "[parameters('RestService2_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('RestService2_password')]"
+					}
 				}
 			},
 			"dependsOn": []

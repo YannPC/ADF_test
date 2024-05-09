@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'secretAccessKey' of 'AmazonS31'"
 		},
+		"Athlete HttpServer1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Athlete HttpServer1'"
+		},
 		"AzureBlobStorage1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
@@ -30,6 +34,10 @@
 		"Destination Storage store_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Destination Storage store'"
+		},
+		"Hdfs1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Hdfs1'"
 		},
 		"PostgreSql1_password": {
 			"type": "secureString",
@@ -47,6 +55,14 @@
 			"type": "string",
 			"defaultValue": "AKIAQ3EGRMZIXRY25F7W"
 		},
+		"Athlete HttpServer1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://raw.githubusercontent.com/darshilparmar/tokyo-olympic-azure-data-engineering-project/main/data/Athletes.csv"
+		},
+		"Athlete HttpServer1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "data"
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://dlsg01.dfs.core.windows.net/"
@@ -62,6 +78,14 @@
 		"EntriesGender HttpServer2_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com/darshilparmar/tokyo-olympic-azure-data-engineering-project/main/data/EntriesGender.csv"
+		},
+		"Hdfs1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "ereghrghe"
+		},
+		"Hdfs1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "dehger"
 		},
 		"HttpServer1_properties_typeProperties_url": {
 			"type": "string",
@@ -90,14 +114,6 @@
 		"PostgreSql1_properties_typeProperties_username": {
 			"type": "string",
 			"defaultValue": "postgres"
-		},
-		"RESTAPI_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://dummy.restapiexample.com/api/v1/employees"
-		},
-		"RestService1_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://m365x84770032.sharepoint.com"
 		}
 	},
 	"variables": {
@@ -218,6 +234,27 @@
 						"value": "[parameters('AmazonS31_secretAccessKey')]"
 					},
 					"authenticationType": "AccessKey"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Athlete HttpServer1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Athlete Http Server from GitHup ",
+				"annotations": [],
+				"type": "HttpServer",
+				"typeProperties": {
+					"url": "[parameters('Athlete HttpServer1_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Basic",
+					"userName": "[parameters('Athlete HttpServer1_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('Athlete HttpServer1_password')]"
+					}
 				}
 			},
 			"dependsOn": []
@@ -360,6 +397,25 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Hdfs1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "Hdfs",
+				"typeProperties": {
+					"url": "[parameters('Hdfs1_properties_typeProperties_url')]",
+					"authenticationType": "Windows",
+					"userName": "[parameters('Hdfs1_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('Hdfs1_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/HttpServer1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -368,7 +424,7 @@
 				"type": "HttpServer",
 				"typeProperties": {
 					"url": "[parameters('HttpServer1_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
+					"enableServerCertificateValidation": false,
 					"authenticationType": "Anonymous"
 				}
 			},
@@ -451,36 +507,6 @@
 				"type": "PostgreSql",
 				"typeProperties": {
 					"connectionString": "[parameters('PostgreSql_legacy_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/RESTAPI')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "RestService",
-				"typeProperties": {
-					"url": "[parameters('RESTAPI_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Anonymous"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/RestService1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "RestService",
-				"typeProperties": {
-					"url": "[parameters('RestService1_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": false,
-					"authenticationType": "Anonymous"
 				}
 			},
 			"dependsOn": []

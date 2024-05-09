@@ -11,6 +11,9 @@
 		"AmazonS31_secretAccessKey": {
 			"value": ""
 		},
+		"Athlete HttpServer1_password": {
+			"value": ""
+		},
 		"AzureBlobStorage1_connectionString": {
 			"value": ""
 		},
@@ -50,6 +53,9 @@
 		"FileServer_newtest_password": {
 			"value": ""
 		},
+		"Hdfs1_password": {
+			"value": ""
+		},
 		"LinkedServiceSqlServer_connectionString": {
 			"value": ""
 		},
@@ -60,6 +66,9 @@
 			"value": ""
 		},
 		"PostgreSql_legacy_connectionString": {
+			"value": ""
+		},
+		"RestService2_password": {
 			"value": ""
 		},
 		"SFTP_LinkedService_password": {
@@ -100,6 +109,9 @@
 		},
 		"Athlete HttpServer1_properties_typeProperties_url": {
 			"value": "https://raw.githubusercontent.com/darshilparmar/tokyo-olympic-azure-data-engineering-project/main/data/Athletes.csv"
+		},
+		"Athlete HttpServer1_properties_typeProperties_userName": {
+			"value": "data"
 		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://dlsg01.dfs.core.windows.net/"
@@ -149,6 +161,12 @@
 		"FileServer_newtest_properties_typeProperties_userId": {
 			"value": "kMassoumou"
 		},
+		"Hdfs1_properties_typeProperties_url": {
+			"value": "ereghrghe"
+		},
+		"Hdfs1_properties_typeProperties_userName": {
+			"value": "dehger"
+		},
 		"HttpServer1_properties_typeProperties_url": {
 			"value": "https://raw.githubusercontent.com/darshilparmar/tokyo-olympic-azure-data-engineering-project/main/data/Coaches.csv"
 		},
@@ -184,6 +202,12 @@
 		},
 		"RestService1_properties_typeProperties_url": {
 			"value": "https://m365x84770032.sharepoint.com"
+		},
+		"RestService2_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/darshilparmar/tokyo-olympic-azure-data-engineering-project/main/data/Coaches.csv"
+		},
+		"RestService2_properties_typeProperties_userName": {
+			"value": "azureuser"
 		},
 		"RestService_sharepointM65x8477032_properties_typeProperties_url": {
 			"value": " https://m365x84770032.sharepoint.com"

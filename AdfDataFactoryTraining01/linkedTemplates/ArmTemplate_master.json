@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'secretAccessKey' of 'AmazonS31'"
 		},
+		"Athlete HttpServer1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Athlete HttpServer1'"
+		},
 		"AzureBlobStorage1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
@@ -67,6 +71,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'FileServer_newtest'"
 		},
+		"Hdfs1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Hdfs1'"
+		},
 		"LinkedServiceSqlServer_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LinkedServiceSqlServer'"
@@ -82,6 +90,10 @@
 		"PostgreSql_legacy_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'PostgreSql_legacy'"
+		},
+		"RestService2_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'RestService2'"
 		},
 		"SFTP_LinkedService_password": {
 			"type": "secureString",
@@ -135,6 +147,10 @@
 		"Athlete HttpServer1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com/darshilparmar/tokyo-olympic-azure-data-engineering-project/main/data/Athletes.csv"
+		},
+		"Athlete HttpServer1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "data"
 		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
@@ -200,6 +216,14 @@
 			"type": "string",
 			"defaultValue": "kMassoumou"
 		},
+		"Hdfs1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "ereghrghe"
+		},
+		"Hdfs1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "dehger"
+		},
 		"HttpServer1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com/darshilparmar/tokyo-olympic-azure-data-engineering-project/main/data/Coaches.csv"
@@ -247,6 +271,14 @@
 		"RestService1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://m365x84770032.sharepoint.com"
+		},
+		"RestService2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://raw.githubusercontent.com/darshilparmar/tokyo-olympic-azure-data-engineering-project/main/data/Coaches.csv"
+		},
+		"RestService2_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "azureuser"
 		},
 		"RestService_sharepointM65x8477032_properties_typeProperties_url": {
 			"type": "string",
@@ -375,6 +407,9 @@
 					"AmazonS31_secretAccessKey": {
 						"value": "[parameters('AmazonS31_secretAccessKey')]"
 					},
+					"Athlete HttpServer1_password": {
+						"value": "[parameters('Athlete HttpServer1_password')]"
+					},
 					"AzureBlobStorage1_connectionString": {
 						"value": "[parameters('AzureBlobStorage1_connectionString')]"
 					},
@@ -386,6 +421,9 @@
 					},
 					"Destination Storage store_connectionString": {
 						"value": "[parameters('Destination Storage store_connectionString')]"
+					},
+					"Hdfs1_password": {
+						"value": "[parameters('Hdfs1_password')]"
 					},
 					"PostgreSql1_password": {
 						"value": "[parameters('PostgreSql1_password')]"
@@ -399,6 +437,12 @@
 					"AmazonS31_properties_typeProperties_accessKeyId": {
 						"value": "[parameters('AmazonS31_properties_typeProperties_accessKeyId')]"
 					},
+					"Athlete HttpServer1_properties_typeProperties_url": {
+						"value": "[parameters('Athlete HttpServer1_properties_typeProperties_url')]"
+					},
+					"Athlete HttpServer1_properties_typeProperties_userName": {
+						"value": "[parameters('Athlete HttpServer1_properties_typeProperties_userName')]"
+					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
 					},
@@ -410,6 +454,12 @@
 					},
 					"EntriesGender HttpServer2_properties_typeProperties_url": {
 						"value": "[parameters('EntriesGender HttpServer2_properties_typeProperties_url')]"
+					},
+					"Hdfs1_properties_typeProperties_url": {
+						"value": "[parameters('Hdfs1_properties_typeProperties_url')]"
+					},
+					"Hdfs1_properties_typeProperties_userName": {
+						"value": "[parameters('Hdfs1_properties_typeProperties_userName')]"
 					},
 					"HttpServer1_properties_typeProperties_url": {
 						"value": "[parameters('HttpServer1_properties_typeProperties_url')]"
@@ -431,12 +481,6 @@
 					},
 					"PostgreSql1_properties_typeProperties_username": {
 						"value": "[parameters('PostgreSql1_properties_typeProperties_username')]"
-					},
-					"RESTAPI_properties_typeProperties_url": {
-						"value": "[parameters('RESTAPI_properties_typeProperties_url')]"
-					},
-					"RestService1_properties_typeProperties_url": {
-						"value": "[parameters('RestService1_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -455,6 +499,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"RestService2_password": {
+						"value": "[parameters('RestService2_password')]"
 					},
 					"Sftp_MsAzure_password": {
 						"value": "[parameters('Sftp_MsAzure_password')]"
@@ -476,6 +523,18 @@
 					},
 					"SqlServer2_password": {
 						"value": "[parameters('SqlServer2_password')]"
+					},
+					"RESTAPI_properties_typeProperties_url": {
+						"value": "[parameters('RESTAPI_properties_typeProperties_url')]"
+					},
+					"RestService1_properties_typeProperties_url": {
+						"value": "[parameters('RestService1_properties_typeProperties_url')]"
+					},
+					"RestService2_properties_typeProperties_url": {
+						"value": "[parameters('RestService2_properties_typeProperties_url')]"
+					},
+					"RestService2_properties_typeProperties_userName": {
+						"value": "[parameters('RestService2_properties_typeProperties_userName')]"
 					},
 					"RestService_sharepointM65x8477032_properties_typeProperties_url": {
 						"value": "[parameters('RestService_sharepointM65x8477032_properties_typeProperties_url')]"
@@ -585,18 +644,6 @@
 					"FileServer2_password": {
 						"value": "[parameters('FileServer2_password')]"
 					},
-					"FileServer_Test_password": {
-						"value": "[parameters('FileServer_Test_password')]"
-					},
-					"FileServer_newtest_password": {
-						"value": "[parameters('FileServer_newtest_password')]"
-					},
-					"LinkedServiceSqlServer_connectionString": {
-						"value": "[parameters('LinkedServiceSqlServer_connectionString')]"
-					},
-					"Athlete HttpServer1_properties_typeProperties_url": {
-						"value": "[parameters('Athlete HttpServer1_properties_typeProperties_url')]"
-					},
 					"AzureHDInsightLinkedService_properties_typeProperties_hostSubscriptionId": {
 						"value": "[parameters('AzureHDInsightLinkedService_properties_typeProperties_hostSubscriptionId')]"
 					},
@@ -620,18 +667,6 @@
 					},
 					"FileServer2_properties_typeProperties_userId": {
 						"value": "[parameters('FileServer2_properties_typeProperties_userId')]"
-					},
-					"FileServer_Test_properties_typeProperties_host": {
-						"value": "[parameters('FileServer_Test_properties_typeProperties_host')]"
-					},
-					"FileServer_Test_properties_typeProperties_userId": {
-						"value": "[parameters('FileServer_Test_properties_typeProperties_userId')]"
-					},
-					"FileServer_newtest_properties_typeProperties_host": {
-						"value": "[parameters('FileServer_newtest_properties_typeProperties_host')]"
-					},
-					"FileServer_newtest_properties_typeProperties_userId": {
-						"value": "[parameters('FileServer_newtest_properties_typeProperties_userId')]"
 					}
 				}
 			},
@@ -653,6 +688,15 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"FileServer_Test_password": {
+						"value": "[parameters('FileServer_Test_password')]"
+					},
+					"FileServer_newtest_password": {
+						"value": "[parameters('FileServer_newtest_password')]"
+					},
+					"LinkedServiceSqlServer_connectionString": {
+						"value": "[parameters('LinkedServiceSqlServer_connectionString')]"
+					},
 					"LocalFileServer1_password": {
 						"value": "[parameters('LocalFileServer1_password')]"
 					},
@@ -661,6 +705,18 @@
 					},
 					"SqlServer1_connectionString": {
 						"value": "[parameters('SqlServer1_connectionString')]"
+					},
+					"FileServer_Test_properties_typeProperties_host": {
+						"value": "[parameters('FileServer_Test_properties_typeProperties_host')]"
+					},
+					"FileServer_Test_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer_Test_properties_typeProperties_userId')]"
+					},
+					"FileServer_newtest_properties_typeProperties_host": {
+						"value": "[parameters('FileServer_newtest_properties_typeProperties_host')]"
+					},
+					"FileServer_newtest_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer_newtest_properties_typeProperties_userId')]"
 					},
 					"LocalFileServer1_properties_typeProperties_host": {
 						"value": "[parameters('LocalFileServer1_properties_typeProperties_host')]"
