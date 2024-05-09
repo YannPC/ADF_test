@@ -2,7 +2,8 @@
 	"name": "AdfDataFactoryTraining01",
 	"properties": {
 		"globalConfigurations": {
-			"PipelineBillingEnabled": "true"
+			"PipelineBillingEnabled": "true",
+			"CICDEnvironment": "production"
 		}
 	},
 	"location": "northeurope",
