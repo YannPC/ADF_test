@@ -1,5 +1,10 @@
 {
 	"name": "AdfDataFactoryTraining01",
+	"properties": {
+		"globalConfigurations": {
+			"PipelineBillingEnabled": "true"
+		}
+	},
 	"location": "northeurope",
 	"identity": {
 		"type": "SystemAssigned,UserAssigned",
