@@ -1,0 +1,7 @@
+{
+	"name": "AzureBlobStorage66",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/490f884c-8564-4a53-bcb9-bee386795964/resourceGroups/ADF_ResourceGroup_Training/providers/Microsoft.Storage/storageAccounts/datalakestorageadf2",
+		"groupId": "blob"
+	}
+}
