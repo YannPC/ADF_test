@@ -136,6 +136,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'TestAzureBlobStorage2'"
 		},
+		"DynamicsCrm1_servicePrincipalCredential": {
+			"type": "secureString",
+			"metadata": "Secure string for 'servicePrincipalCredential' of 'DynamicsCrm1'"
+		},
 		"AmazonS3_properties_typeProperties_accessKeyId": {
 			"type": "string",
 			"defaultValue": "AKIAQ3EGRMZI3C5KF7XF"
@@ -373,6 +377,10 @@
 			"defaultValue": [
 				"dataslice10.eastus.database.windows.net"
 			]
+		},
+		"DynamicsCrm1_properties_typeProperties_servicePrincipalId": {
+			"type": "string",
+			"defaultValue": "de24a188-5bbb-4235-b4f2-f5b90e075499"
 		},
 		"containerUri": {
 			"type": "string",
@@ -635,14 +643,11 @@
 					"AzureHDInsightLinkedService_servicePrincipalKey": {
 						"value": "[parameters('AzureHDInsightLinkedService_servicePrincipalKey')]"
 					},
+					"AzureSqlDatabase2_connectionString": {
+						"value": "[parameters('AzureSqlDatabase2_connectionString')]"
+					},
 					"AzureSqlDatabaseLinkedService_connectionString": {
 						"value": "[parameters('AzureSqlDatabaseLinkedService_connectionString')]"
-					},
-					"FileServer1_password": {
-						"value": "[parameters('FileServer1_password')]"
-					},
-					"FileServer2_password": {
-						"value": "[parameters('FileServer2_password')]"
 					},
 					"AzureHDInsightLinkedService_properties_typeProperties_hostSubscriptionId": {
 						"value": "[parameters('AzureHDInsightLinkedService_properties_typeProperties_hostSubscriptionId')]"
@@ -655,18 +660,6 @@
 					},
 					"AzureHDInsightLinkedService_properties_typeProperties_tenant": {
 						"value": "[parameters('AzureHDInsightLinkedService_properties_typeProperties_tenant')]"
-					},
-					"FileServer1_properties_typeProperties_host": {
-						"value": "[parameters('FileServer1_properties_typeProperties_host')]"
-					},
-					"FileServer1_properties_typeProperties_userId": {
-						"value": "[parameters('FileServer1_properties_typeProperties_userId')]"
-					},
-					"FileServer2_properties_typeProperties_host": {
-						"value": "[parameters('FileServer2_properties_typeProperties_host')]"
-					},
-					"FileServer2_properties_typeProperties_userId": {
-						"value": "[parameters('FileServer2_properties_typeProperties_userId')]"
 					}
 				}
 			},
@@ -688,6 +681,12 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"FileServer1_password": {
+						"value": "[parameters('FileServer1_password')]"
+					},
+					"FileServer2_password": {
+						"value": "[parameters('FileServer2_password')]"
+					},
 					"FileServer_Test_password": {
 						"value": "[parameters('FileServer_Test_password')]"
 					},
@@ -705,6 +704,24 @@
 					},
 					"SqlServer1_connectionString": {
 						"value": "[parameters('SqlServer1_connectionString')]"
+					},
+					"TestAzureBlobStorage2_connectionString": {
+						"value": "[parameters('TestAzureBlobStorage2_connectionString')]"
+					},
+					"DynamicsCrm1_servicePrincipalCredential": {
+						"value": "[parameters('DynamicsCrm1_servicePrincipalCredential')]"
+					},
+					"FileServer1_properties_typeProperties_host": {
+						"value": "[parameters('FileServer1_properties_typeProperties_host')]"
+					},
+					"FileServer1_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer1_properties_typeProperties_userId')]"
+					},
+					"FileServer2_properties_typeProperties_host": {
+						"value": "[parameters('FileServer2_properties_typeProperties_host')]"
+					},
+					"FileServer2_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer2_properties_typeProperties_userId')]"
 					},
 					"FileServer_Test_properties_typeProperties_host": {
 						"value": "[parameters('FileServer_Test_properties_typeProperties_host')]"
@@ -762,6 +779,9 @@
 					},
 					"PrivateLinkService370_properties_fqdns": {
 						"value": "[parameters('PrivateLinkService370_properties_fqdns')]"
+					},
+					"DynamicsCrm1_properties_typeProperties_servicePrincipalId": {
+						"value": "[parameters('DynamicsCrm1_properties_typeProperties_servicePrincipalId')]"
 					}
 				}
 			},
@@ -782,12 +802,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"AzureSqlDatabase2_connectionString": {
-						"value": "[parameters('AzureSqlDatabase2_connectionString')]"
-					},
-					"TestAzureBlobStorage2_connectionString": {
-						"value": "[parameters('TestAzureBlobStorage2_connectionString')]"
 					}
 				}
 			},

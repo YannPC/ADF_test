@@ -101,6 +101,9 @@
 		"TestAzureBlobStorage2_connectionString": {
 			"value": ""
 		},
+		"DynamicsCrm1_servicePrincipalCredential": {
+			"value": ""
+		},
 		"AmazonS3_properties_typeProperties_accessKeyId": {
 			"value": "AKIAQ3EGRMZI3C5KF7XF"
 		},
@@ -280,6 +283,9 @@
 			"value": [
 				"dataslice10.eastus.database.windows.net"
 			]
+		},
+		"DynamicsCrm1_properties_typeProperties_servicePrincipalId": {
+			"value": "de24a188-5bbb-4235-b4f2-f5b90e075499"
 		}
 	}
 }

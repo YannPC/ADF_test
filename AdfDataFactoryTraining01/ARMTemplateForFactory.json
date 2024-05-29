@@ -136,6 +136,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'TestAzureBlobStorage2'"
 		},
+		"DynamicsCrm1_servicePrincipalCredential": {
+			"type": "secureString",
+			"metadata": "Secure string for 'servicePrincipalCredential' of 'DynamicsCrm1'"
+		},
 		"AmazonS3_properties_typeProperties_accessKeyId": {
 			"type": "string",
 			"defaultValue": "AKIAQ3EGRMZI3C5KF7XF"
@@ -373,6 +377,10 @@
 			"defaultValue": [
 				"dataslice10.eastus.database.windows.net"
 			]
+		},
+		"DynamicsCrm1_properties_typeProperties_servicePrincipalId": {
+			"type": "string",
+			"defaultValue": "de24a188-5bbb-4235-b4f2-f5b90e075499"
 		}
 	},
 	"variables": {
@@ -2400,7 +2408,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Copy data1",
+						"name": "Copy data",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -2460,7 +2468,7 @@
 						"type": "Delete",
 						"dependsOn": [
 							{
-								"activity": "Copy data1",
+								"activity": "Copy data",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -6339,22 +6347,11 @@
 							"timeToLive": 10,
 							"cleanup": false,
 							"customProperties": []
-						},
-						"pipelineExternalComputeScaleProperties": {
-							"timeToLive": 60,
-							"numberOfPipelineNodes": 1,
-							"numberOfExternalNodes": 1
 						}
 					}
-				},
-				"managedVirtualNetwork": {
-					"type": "ManagedVirtualNetworkReference",
-					"referenceName": "default"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/managedVirtualNetworks/default')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AzureIR')]",
@@ -6710,6 +6707,33 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/managedVirtualNetworks/default')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DynamicsCrm1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "DynamicsCrm",
+				"typeProperties": {
+					"deploymentType": "Online",
+					"serviceUri": "https://orgf800590a.crm12.dynamics.com",
+					"authenticationType": "AADServicePrincipal",
+					"servicePrincipalId": "[parameters('DynamicsCrm1_properties_typeProperties_servicePrincipalId')]",
+					"servicePrincipalCredential": {
+						"type": "SecureString",
+						"value": "[parameters('DynamicsCrm1_servicePrincipalCredential')]"
+					},
+					"servicePrincipalCredentialType": "ServicePrincipalKey"
+				},
+				"connectVia": {
+					"referenceName": "SHIR01",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/SHIR01')]"
 			]
 		}
 	]

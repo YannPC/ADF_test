@@ -310,6 +310,28 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureIR-ManagedVnet1')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "Managed",
+				"description": "Azure integration runtime for Managed Vnet ",
+				"typeProperties": {
+					"computeProperties": {
+						"location": "North Europe",
+						"dataFlowProperties": {
+							"computeType": "General",
+							"coreCount": 8,
+							"timeToLive": 10,
+							"cleanup": false,
+							"customProperties": []
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureIR')]",
 			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
 			"apiVersion": "2018-06-01",
@@ -435,134 +457,6 @@
 				"lastPublishTime": "2023-11-27T14:01:54Z"
 			},
 			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/umaSP_file')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "SharePoint Online",
-						"type": "WebActivity",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"method": "GET",
-							"headers": {
-								"Accept": "application/json;odata=verbose"
-							},
-							"url": "https://collaboration.merck.com/sites/CCSDM-POC/_api/Web/Lists(guid'894ebfa8-5d62-432e-a212-3dd7b6794897')/Items",
-							"authentication": {
-								"type": "ServicePrincipal",
-								"userTenant": "a00de4ec-48a8-43a6-be74-e31274e2060d",
-								"username": "bfc2c288-6d59-42b4-8e58-3481c63faeda",
-								"resource": "00000003-0000-0ff1-ce00-000000000000/collaboration.merck.com@a00de4ec-48a8-43a6-be74-e31274e2060d",
-								"password": {
-									"type": "AzureKeyVaultSecret",
-									"store": {
-										"referenceName": "resource_group_key_vault",
-										"type": "LinkedServiceReference"
-									},
-									"secretName": "CCSDM-Automation-Secret"
-								}
-							}
-						}
-					},
-					{
-						"name": "Key Vault - Get Access Token",
-						"type": "WebActivity",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"method": "GET",
-							"headers": {},
-							"url": "https://ccsdm-c-kv.vault.azure.net/secrets/SPO-AccessToken?api-version=7.0",
-							"authentication": {
-								"type": "MSI",
-								"resource": "https://vault.azure.net"
-							}
-						}
-					},
-					{
-						"name": "SharePoint Online - Managed Identity",
-						"type": "WebActivity",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"method": "GET",
-							"headers": {
-								"Accept": "application/json;odata=verbose"
-							},
-							"url": "https://collaboration.merck.com/sites/CCSDM-POC/_api/Web/Lists(guid'894ebfa8-5d62-432e-a212-3dd7b6794897')/Items",
-							"authentication": {
-								"type": "MSI",
-								"resource": "00000003-0000-0ff1-ce00-000000000000/collaboration.merck.com@a00de4ec-48a8-43a6-be74-e31274e2060d"
-							}
-						}
-					},
-					{
-						"name": "SharePoint Online Bearer",
-						"type": "WebActivity",
-						"dependsOn": [
-							{
-								"activity": "Key Vault - Get Access Token",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"method": "GET",
-							"headers": {
-								"Accept": "application/json;odata=verbose",
-								"Authorization": {
-									"value": "@concat('Bearer ',activity('Key Vault - Get Access Token').output.value)",
-									"type": "Expression"
-								}
-							},
-							"url": "https://collaboration.merck.com/sites/CCSDM-POC/_api/Web/Lists(guid'894ebfa8-5d62-432e-a212-3dd7b6794897')/Items"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": [],
-				"lastPublishTime": "2024-03-21T14:36:25Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/resource_group_key_vault')]"
-			]
 		}
 	]
 }
