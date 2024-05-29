@@ -6,11 +6,11 @@
 		"type": "DynamicsCrm",
 		"typeProperties": {
 			"deploymentType": "Online",
-			"serviceUri": "https://org62647793.crm12.dynamics.com",
+			"serviceUri": "https://orgf800590a.crm12.dynamics.com",
 			"authenticationType": "AADServicePrincipal",
 			"servicePrincipalId": "de24a188-5bbb-4235-b4f2-f5b90e075499",
 			"servicePrincipalCredentialType": "ServicePrincipalKey",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI3ZGFlODRkZC0xM2U0LTRjZTYtYjExNy1jNGZlYmZlMjkxNzQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJjODQ3MTJhNi1mZmVhLTQ2OGYtOWZmMi0xZmNiZDFlNDJjNmMiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "SHIR01",
