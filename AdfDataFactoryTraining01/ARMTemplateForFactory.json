@@ -55,6 +55,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Destination Storage store'"
 		},
+		"DynamicsCrm1_servicePrincipalCredential": {
+			"type": "secureString",
+			"metadata": "Secure string for 'servicePrincipalCredential' of 'DynamicsCrm1'"
+		},
 		"FileServer1_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'FileServer1'"
@@ -82,6 +86,10 @@
 		"LocalFileServer1_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LocalFileServer1'"
+		},
+		"Oracle_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Oracle'"
 		},
 		"PostgreSql1_password": {
 			"type": "secureString",
@@ -136,10 +144,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'TestAzureBlobStorage2'"
 		},
-		"DynamicsCrm1_servicePrincipalCredential": {
-			"type": "secureString",
-			"metadata": "Secure string for 'servicePrincipalCredential' of 'DynamicsCrm1'"
-		},
 		"AmazonS3_properties_typeProperties_accessKeyId": {
 			"type": "string",
 			"defaultValue": "AKIAQ3EGRMZI3C5KF7XF"
@@ -183,6 +187,10 @@
 		"AzureKeyVault01_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://ADFKeyVault99.vault.azure.net/"
+		},
+		"DynamicsCrm1_properties_typeProperties_servicePrincipalId": {
+			"type": "string",
+			"defaultValue": "de24a188-5bbb-4235-b4f2-f5b90e075499"
 		},
 		"EntriesGender HttpServer2_properties_typeProperties_url": {
 			"type": "string",
@@ -377,10 +385,6 @@
 			"defaultValue": [
 				"dataslice10.eastus.database.windows.net"
 			]
-		},
-		"DynamicsCrm1_properties_typeProperties_servicePrincipalId": {
-			"type": "string",
-			"defaultValue": "de24a188-5bbb-4235-b4f2-f5b90e075499"
 		}
 	},
 	"variables": {
@@ -5697,6 +5701,33 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DynamicsCrm1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "DynamicsCrm",
+				"typeProperties": {
+					"deploymentType": "Online",
+					"serviceUri": "https://orgf800590a.crm12.dynamics.com",
+					"authenticationType": "AADServicePrincipal",
+					"servicePrincipalId": "[parameters('DynamicsCrm1_properties_typeProperties_servicePrincipalId')]",
+					"servicePrincipalCredential": {
+						"type": "SecureString",
+						"value": "[parameters('DynamicsCrm1_servicePrincipalCredential')]"
+					},
+					"servicePrincipalCredentialType": "ServicePrincipalKey"
+				},
+				"connectVia": {
+					"referenceName": "SHIR01",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/SHIR01')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/EntriesGender HttpServer2')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -5958,6 +5989,25 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/integrationRuntimes/SHIR01')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureKeyVault01')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Oracle')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "Oracle",
+				"typeProperties": {
+					"connectionString": "[parameters('Oracle_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "SHIR01",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/SHIR01')]"
 			]
 		},
 		{
@@ -6710,30 +6760,147 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/DynamicsCrm1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"name": "[concat(parameters('factoryName'), '/oracledb_Blob')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"annotations": [],
-				"type": "DynamicsCrm",
-				"typeProperties": {
-					"deploymentType": "Online",
-					"serviceUri": "https://orgf800590a.crm12.dynamics.com",
-					"authenticationType": "AADServicePrincipal",
-					"servicePrincipalId": "[parameters('DynamicsCrm1_properties_typeProperties_servicePrincipalId')]",
-					"servicePrincipalCredential": {
-						"type": "SecureString",
-						"value": "[parameters('DynamicsCrm1_servicePrincipalCredential')]"
-					},
-					"servicePrincipalCredentialType": "ServicePrincipalKey"
+				"activities": [
+					{
+						"name": "oracledb_blob",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "OracleSource",
+								"partitionOption": "None",
+								"queryTimeout": "02:00:00"
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "COL1",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "COL1",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "COL2",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "COL2",
+											"type": "String",
+											"physicalType": "String"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "OracleTable1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DelimitedText27",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
 				},
-				"connectVia": {
-					"referenceName": "SHIR01",
-					"type": "IntegrationRuntimeReference"
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/OracleTable1')]",
+				"[concat(variables('factoryId'), '/datasets/DelimitedText27')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/OracleTable1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Oracle",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "OracleTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "HR",
+					"table": "SRC_FBRC_TESTPROM"
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/SHIR01')]"
+				"[concat(variables('factoryId'), '/linkedServices/Oracle')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText27')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "fabric",
+						"container": "containerouput"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
 			]
 		}
 	]

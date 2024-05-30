@@ -41,6 +41,9 @@
 		"Destination Storage store_connectionString": {
 			"value": ""
 		},
+		"DynamicsCrm1_servicePrincipalCredential": {
+			"value": ""
+		},
 		"FileServer1_password": {
 			"value": ""
 		},
@@ -60,6 +63,9 @@
 			"value": ""
 		},
 		"LocalFileServer1_password": {
+			"value": ""
+		},
+		"Oracle_connectionString": {
 			"value": ""
 		},
 		"PostgreSql1_password": {
@@ -101,9 +107,6 @@
 		"TestAzureBlobStorage2_connectionString": {
 			"value": ""
 		},
-		"DynamicsCrm1_servicePrincipalCredential": {
-			"value": ""
-		},
 		"AmazonS3_properties_typeProperties_accessKeyId": {
 			"value": "AKIAQ3EGRMZI3C5KF7XF"
 		},
@@ -136,6 +139,9 @@
 		},
 		"AzureKeyVault01_properties_typeProperties_baseUrl": {
 			"value": "https://ADFKeyVault99.vault.azure.net/"
+		},
+		"DynamicsCrm1_properties_typeProperties_servicePrincipalId": {
+			"value": "de24a188-5bbb-4235-b4f2-f5b90e075499"
 		},
 		"EntriesGender HttpServer2_properties_typeProperties_url": {
 			"value": "https://raw.githubusercontent.com/darshilparmar/tokyo-olympic-azure-data-engineering-project/main/data/EntriesGender.csv"
@@ -283,9 +289,6 @@
 			"value": [
 				"dataslice10.eastus.database.windows.net"
 			]
-		},
-		"DynamicsCrm1_properties_typeProperties_servicePrincipalId": {
-			"value": "de24a188-5bbb-4235-b4f2-f5b90e075499"
 		},
 		"containerUri": {
 			"value": ""

@@ -55,6 +55,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Destination Storage store'"
 		},
+		"DynamicsCrm1_servicePrincipalCredential": {
+			"type": "secureString",
+			"metadata": "Secure string for 'servicePrincipalCredential' of 'DynamicsCrm1'"
+		},
 		"FileServer1_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'FileServer1'"
@@ -82,6 +86,10 @@
 		"LocalFileServer1_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LocalFileServer1'"
+		},
+		"Oracle_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Oracle'"
 		},
 		"PostgreSql1_password": {
 			"type": "secureString",
@@ -136,10 +144,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'TestAzureBlobStorage2'"
 		},
-		"DynamicsCrm1_servicePrincipalCredential": {
-			"type": "secureString",
-			"metadata": "Secure string for 'servicePrincipalCredential' of 'DynamicsCrm1'"
-		},
 		"AmazonS3_properties_typeProperties_accessKeyId": {
 			"type": "string",
 			"defaultValue": "AKIAQ3EGRMZI3C5KF7XF"
@@ -183,6 +187,10 @@
 		"AzureKeyVault01_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://ADFKeyVault99.vault.azure.net/"
+		},
+		"DynamicsCrm1_properties_typeProperties_servicePrincipalId": {
+			"type": "string",
+			"defaultValue": "de24a188-5bbb-4235-b4f2-f5b90e075499"
 		},
 		"EntriesGender HttpServer2_properties_typeProperties_url": {
 			"type": "string",
@@ -377,10 +385,6 @@
 			"defaultValue": [
 				"dataslice10.eastus.database.windows.net"
 			]
-		},
-		"DynamicsCrm1_properties_typeProperties_servicePrincipalId": {
-			"type": "string",
-			"defaultValue": "de24a188-5bbb-4235-b4f2-f5b90e075499"
 		},
 		"containerUri": {
 			"type": "string",
@@ -681,6 +685,9 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"DynamicsCrm1_servicePrincipalCredential": {
+						"value": "[parameters('DynamicsCrm1_servicePrincipalCredential')]"
+					},
 					"FileServer1_password": {
 						"value": "[parameters('FileServer1_password')]"
 					},
@@ -699,6 +706,9 @@
 					"LocalFileServer1_password": {
 						"value": "[parameters('LocalFileServer1_password')]"
 					},
+					"Oracle_connectionString": {
+						"value": "[parameters('Oracle_connectionString')]"
+					},
 					"SFTP_LinkedService_password": {
 						"value": "[parameters('SFTP_LinkedService_password')]"
 					},
@@ -708,8 +718,8 @@
 					"TestAzureBlobStorage2_connectionString": {
 						"value": "[parameters('TestAzureBlobStorage2_connectionString')]"
 					},
-					"DynamicsCrm1_servicePrincipalCredential": {
-						"value": "[parameters('DynamicsCrm1_servicePrincipalCredential')]"
+					"DynamicsCrm1_properties_typeProperties_servicePrincipalId": {
+						"value": "[parameters('DynamicsCrm1_properties_typeProperties_servicePrincipalId')]"
 					},
 					"FileServer1_properties_typeProperties_host": {
 						"value": "[parameters('FileServer1_properties_typeProperties_host')]"
@@ -779,9 +789,6 @@
 					},
 					"PrivateLinkService370_properties_fqdns": {
 						"value": "[parameters('PrivateLinkService370_properties_fqdns')]"
-					},
-					"DynamicsCrm1_properties_typeProperties_servicePrincipalId": {
-						"value": "[parameters('DynamicsCrm1_properties_typeProperties_servicePrincipalId')]"
 					}
 				}
 			},
