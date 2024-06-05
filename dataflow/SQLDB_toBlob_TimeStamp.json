@@ -29,7 +29,7 @@
 				"     format: 'table') ~> source1",
 				"source1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     filePattern:'Timestamp',",
+				"     rowUrlColumn:'Timestamp',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
