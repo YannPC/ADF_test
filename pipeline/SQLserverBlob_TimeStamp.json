@@ -39,8 +39,7 @@
 						"typeConversionSettings": {
 							"allowDataTruncation": true,
 							"treatBooleanAsNumber": false,
-							"dateFormat": "yyyy-MM-dd",
-							"dateTimeFormat": "yyyy-MM-dd HH:mm:ss.fff zzz"
+							"dateTimeFormat": "yyyy-mm-dd"
 						}
 					}
 				},
