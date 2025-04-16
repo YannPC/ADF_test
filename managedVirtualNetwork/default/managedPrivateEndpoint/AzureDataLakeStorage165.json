@@ -1,0 +1,10 @@
+{
+	"name": "AzureDataLakeStorage165",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/fe666444-1120-43dc-ad95-c9be8494eab3/resourceGroups/Big_Data_RG/providers/Microsoft.Storage/storageAccounts/labsynapsegen2",
+		"groupId": "dfs",
+		"fqdns": [
+			"labsynapsegen2.dfs.core.windows.net"
+		]
+	}
+}
